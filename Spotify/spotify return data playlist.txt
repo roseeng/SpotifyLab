@@ -1,0 +1,24 @@
+{
+"collaborative":false,
+"external_urls":{"spotify":"http://open.spotify.com/user/roseeng/playlist/1g0P1UcMs27v22oAWfOZli"},
+"href":"https://api.spotify.com/v1/users/roseeng/playlists/1g0P1UcMs27v22oAWfOZli",
+"id":"1g0P1UcMs27v22oAWfOZli",
+"images":[{"url":"https://mosaic.scdn.co/640/f30be8e6d40879ca27d742a4fd6f6c24a9900e042a224c99d980e717e3e633ea9ec1b3ff5dc76b5afbf415291c136f1741fcfa2ea7631e5795a41b85b39f15ee50ce02b6cbd024c22960c398c4d9b7dd","width":640,"height":640},
+	{"url":"https://mosaic.scdn.co/300/f30be8e6d40879ca27d742a4fd6f6c24a9900e042a224c99d980e717e3e633ea9ec1b3ff5dc76b5afbf415291c136f1741fcfa2ea7631e5795a41b85b39f15ee50ce02b6cbd024c22960c398c4d9b7dd","width":300,"height":300},{"url":"https://mosaic.scdn.co/60/f30be8e6d40879ca27d742a4fd6f6c24a9900e042a224c99d980e717e3e633ea9ec1b3ff5dc76b5afbf415291c136f1741fcfa2ea7631e5795a41b85b39f15ee50ce02b6cbd024c22960c398c4d9b7dd","width":60,"height":60}],
+"name":"V 1709",
+"owner":{
+	"display_name":null,
+	"external_urls":{"spotify":"http://open.spotify.com/user/roseeng"},
+	"followers":null,
+	"href":"https://api.spotify.com/v1/users/roseeng",
+	"id":"roseeng","images":null,"type":"user","uri":"spotify:user:roseeng","error":null},
+"public":true,
+"snapshot_id":"zfdTFwFX5kndRT/2sAdEYT2Ybl89Uka4PypIpd5zgxRSMh/dX9mJJundUxuc+k8j",
+"tracks":{
+	"href":"https://api.spotify.com/v1/users/roseeng/playlists/1g0P1UcMs27v22oAWfOZli/tracks",
+	"total":5
+},
+"type":"playlist",
+"uri":"spotify:user:roseeng:playlist:1g0P1UcMs27v22oAWfOZli",
+"error":null
+}

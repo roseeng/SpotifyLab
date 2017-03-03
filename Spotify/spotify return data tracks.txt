@@ -1,0 +1,59 @@
+{
+"album": {
+	"album_type":"album",
+	"external_urls":{"spotify":"https://open.spotify.com/album/7kIS6gbltIaPlkys2lnyK9"},
+	"href":"https://api.spotify.com/v1/albums/7kIS6gbltIaPlkys2lnyK9",
+	"id":"7kIS6gbltIaPlkys2lnyK9",
+	"images":[{"url":"https://i.scdn.co/image/4ab316947bc829d975a4ee27939b070ad32f8c1d","width":640,"height":634},{"url":"https://i.scdn.co/image/f99c233312aba21b342eede572973271fa54017b","width":300,"height":297},{"url":"https://i.scdn.co/image/890e23c8506f885479db41417217f180d8e552d8","width":64,"height":63}],
+	"name":"Outrospective",
+	"type":"album",
+	"uri":"spotify:album:7kIS6gbltIaPlkys2lnyK9",
+	"error":null
+},
+"artists":[
+	{"external_urls":{"spotify":"https://open.spotify.com/artist/5T4UKHhr4HGIC0VzdZQtAE"},
+	"href":"https://api.spotify.com/v1/artists/5T4UKHhr4HGIC0VzdZQtAE",
+	"id":"5T4UKHhr4HGIC0VzdZQtAE",
+	"name":"Faithless","type":"artist","uri":"spotify:artist:5T4UKHhr4HGIC0VzdZQtAE","error":null}
+],
+"available_markets":["AD","AR","AT","AU","BE","BG","BO","BR","CA","CH","CL","CO","CR","CY","CZ","DE","DK","DO","EC","EE","ES","FI","FR","GB","GR","GT","HK","HN","HU","ID","IE","IS","IT","JP","LI","LT","LU","LV","MC","MT","MX","MY","NI","NL","NO","NZ","PA","PE","PH","PL","PT","PY","SE","SG","SK","SV","TR","TW","US","UY"],
+"disc_number":1,
+"duration_ms":273933,
+"explicit":false,
+"external_ids":{"isrc":"GBBXH0100035"},
+"external_urls":{"spotify":"https://open.spotify.com/track/56iHRaKO1tIhMORNIt80Zq"},
+"href":"https://api.spotify.com/v1/tracks/56iHRaKO1tIhMORNIt80Zq",
+"id":"56iHRaKO1tIhMORNIt80Zq",
+"name":"Evergreen",
+"popularity":26,
+"preview_url":"https://p.scdn.co/mp3-preview/159c294da7bba83d42f9e8e557dc827b35486f60?cid=b80c989bca714f4b9544319ac76c8c33",
+"track_number":11,
+"type":"track",
+"uri":"spotify:track:56iHRaKO1tIhMORNIt80Zq",
+"is_playable":null,
+"linked_from":null,
+"error":null
+}
+{
+"album":{
+	"album_type":"album",
+	"available_markets":["DK","FI","NO","SE"],
+	"external_urls":{"spotify":"https://open.spotify.com/album/5AtmSXYEpSWXtHbX2Kup7q"},
+	"href":"https://api.spotify.com/v1/albums/5AtmSXYEpSWXtHbX2Kup7q",
+	"id":"5AtmSXYEpSWXtHbX2Kup7q",
+	"images":[{"url":"https://i.scdn.co/image/cfccea7331423cdab962465ccdf3b0b0a7543ca2","width":640,"height":640},{"url":"https://i.scdn.co/image/56c09ef01401b66d03ba87a102754ca8da51d97c","width":300,"height":300},{"url":"https://i.scdn.co/image/5964cb4cc7a4353f0c3acc513fd4f128b62ae9dc","width":64,"height":64}],
+	"name":"Shed My Skin",
+	"type":"album",
+	"uri":"spotify:album:5AtmSXYEpSWXtHbX2Kup7q","error":null},
+"artists":[
+	{"external_urls":{"spotify":"https://open.spotify.com/artist/4wfoAaFRdaZdrn782iDlCD"},
+	"href":"https://api.spotify.com/v1/artists/4wfoAaFRdaZdrn782iDlCD",
+	"id":"4wfoAaFRdaZdrn782iDlCD",
+	"name":"Therese",
+	"type":"artist","uri":"spotify:artist:4wfoAaFRdaZdrn782iDlCD","error":null}
+	],
+"available_markets":["DK","FI","NO","SE"],
+"disc_number":1,
+"duration_ms":337466,
+"explicit":false,
+"external_ids":{"isrc":"DKUCA0900091"},"external_urls":{"spotify":"https://open.spotify.com/track/5Byttn3tK4k4Vn7kzMVIwe"},"href":"https://api.spotify.com/v1/tracks/5Byttn3tK4k4Vn7kzMVIwe","id":"5Byttn3tK4k4Vn7kzMVIwe","name":"Shed My Skin - Out Of Sight Chill Mix","popularity":15,"preview_url":"https://p.scdn.co/mp3-preview/3109bda8f456683dbba5caf2ac76ae5a968b4c1e?cid=b80c989bca714f4b9544319ac76c8c33","track_number":7,"type":"track","uri":"spotify:track:5Byttn3tK4k4Vn7kzMVIwe","is_playable":null,"linked_from":null,"error":null}

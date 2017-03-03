@@ -1,0 +1,56 @@
+playlist:
+{
+"collaborative":false,
+"external_urls":{"spotify":"http://open.spotify.com/user/roseeng/playlist/1g0P1UcMs27v22oAWfOZli"},
+"href":"https://api.spotify.com/v1/users/roseeng/playlists/1g0P1UcMs27v22oAWfOZli",
+"id":"1g0P1UcMs27v22oAWfOZli",
+"images":[{"url":"https://mosaic.scdn.co/640/f30be8e6d40879ca27d742a4fd6f6c24a9900e042a224c99d980e717e3e633ea9ec1b3ff5dc76b5afbf415291c136f1741fcfa2ea7631e5795a41b85b39f15ee50ce02b6cbd024c22960c398c4d9b7dd","width":640,"height":640},
+	{"url":"https://mosaic.scdn.co/300/f30be8e6d40879ca27d742a4fd6f6c24a9900e042a224c99d980e717e3e633ea9ec1b3ff5dc76b5afbf415291c136f1741fcfa2ea7631e5795a41b85b39f15ee50ce02b6cbd024c22960c398c4d9b7dd","width":300,"height":300},{"url":"https://mosaic.scdn.co/60/f30be8e6d40879ca27d742a4fd6f6c24a9900e042a224c99d980e717e3e633ea9ec1b3ff5dc76b5afbf415291c136f1741fcfa2ea7631e5795a41b85b39f15ee50ce02b6cbd024c22960c398c4d9b7dd","width":60,"height":60}],
+"name":"V 1709",
+"public":true,
+"snapshot_id":"zfdTFwFX5kndRT/2sAdEYT2Ybl89Uka4PypIpd5zgxRSMh/dX9mJJundUxuc+k8j",
+"tracks":{
+	"href":"https://api.spotify.com/v1/users/roseeng/playlists/1g0P1UcMs27v22oAWfOZli/tracks",
+	"total":5
+},
+"uri":"spotify:user:roseeng:playlist:1g0P1UcMs27v22oAWfOZli",
+}
+
+track:
+{
+"album": {
+	"album_type":"album",
+	"external_urls":{"spotify":"https://open.spotify.com/album/7kIS6gbltIaPlkys2lnyK9"},
+	"href":"https://api.spotify.com/v1/albums/7kIS6gbltIaPlkys2lnyK9",
+	"id":"7kIS6gbltIaPlkys2lnyK9",
+	"images":[{"url":"https://i.scdn.co/image/4ab316947bc829d975a4ee27939b070ad32f8c1d","width":640,"height":634},{"url":"https://i.scdn.co/image/f99c233312aba21b342eede572973271fa54017b","width":300,"height":297},{"url":"https://i.scdn.co/image/890e23c8506f885479db41417217f180d8e552d8","width":64,"height":63}],
+	"name":"Outrospective",
+	"type":"album",
+	"uri":"spotify:album:7kIS6gbltIaPlkys2lnyK9",
+},
+"artists":[
+	{
+	"external_urls":{"spotify":"https://open.spotify.com/artist/5T4UKHhr4HGIC0VzdZQtAE"},
+	"href":"https://api.spotify.com/v1/artists/5T4UKHhr4HGIC0VzdZQtAE",
+	"id":"5T4UKHhr4HGIC0VzdZQtAE",
+	"name":"Faithless",
+	"type":"artist",
+	"uri":"spotify:artist:5T4UKHhr4HGIC0VzdZQtAE"
+	}
+	],
+"disc_number":1,
+"duration_ms":273933,
+"explicit":false,
+"external_ids":{"isrc":"GBBXH0100035"},
+"external_urls":{"spotify":"https://open.spotify.com/track/56iHRaKO1tIhMORNIt80Zq"},
+"href":"https://api.spotify.com/v1/tracks/56iHRaKO1tIhMORNIt80Zq",
+"id":"56iHRaKO1tIhMORNIt80Zq",
+"name":"Evergreen",
+"popularity":26,
+"preview_url":"https://p.scdn.co/mp3-preview/159c294da7bba83d42f9e8e557dc827b35486f60?cid=b80c989bca714f4b9544319ac76c8c33",
+"track_number":11,
+"type":"track",
+"uri":"spotify:track:56iHRaKO1tIhMORNIt80Zq",
+"is_playable":null,
+"linked_from":null,
+}
