@@ -20,9 +20,18 @@ namespace Spotify
         static string _ClientId = "b80c989bca714f4b9544319ac76c8c33";
         static SpotifyWebAPI _spotify;
         /*
+          
+         Steg ett: Logga in på Spotify
+         Steg två: Öppna nedanstående URL i Chrome (skillnaden är bara att jag testar att skicka med ett state i den senare)
+         
 https://accounts.spotify.com/authorize/?client_id=b80c989bca714f4b9544319ac76c8c33&response_type=token&redirect_uri=http://localhost&state=&scope=playlist-read-private&show_dialog=False
 
 https://accounts.spotify.com/authorize/?client_id=b80c989bca714f4b9544319ac76c8c33&response_type=token&redirect_uri=http://localhost&state=123&scope=playlist-read-private&show_dialog=False
+         
+         Steg tre: Chrome kommer göra en redirect som inte kan öppnas (om du inte har en webbserver igång på din dator)
+                   Urlen kommer se ut ungefär: http://localhost/#access_token=BQDyI2OMfVebN0haQovN58UKyQUHQYRNZL94UNTU0U0DxWqurGSsZIRSYoiuMvnlNKgPoS9gpUaXEbFVdQlYJp4lyQpu_F-wSuhtO4ORa3mWTsNanNm1agqhfTV39MIK0bEaKbZ2OafkOWfBUBz_cCHhjf-qe_2E3ro&token_type=Bearer&expires_in=3600&state=123
+         
+         Steg fyra: Kopiera access_token ur Urlen och klistra in i konstruktorn för SPotifyWebAPI nedan. Kör programmet.
          
          */
         /*
@@ -41,7 +50,7 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
             var spotify = new SpotifyWebAPI()
             {                
                 TokenType = "Bearer",
-                AccessToken = "BQDmLt_AFMib64MJWcILj9OdrePsT9jUE1NsB25PRYxi_o85uu-9eRgrXP1s4armhqeViXxYiKLcxrvViUvLcSJPG2nyInG1EySUgl74H20QuuThV_aKI-vELZBfM1C_WoRQsIeTU4gVOClHHTDDJ2yv1DTVRlSNbeKge49NIDQ",
+                AccessToken = "BQDyI2OMfVebN0haQovN58UKyQUHQYRNZL94UNTU0U0DxWqurGSsZIRSYoiuMvnlNKgPoS9gpUaXEbFVdQlYJp4lyQpu_F-wSuhtO4ORa3mWTsNanNm1agqhfTV39MIK0bEaKbZ2OafkOWfBUBz_cCHhjf-qe_2E3ro",
                 UseAuth = true
             };
 
