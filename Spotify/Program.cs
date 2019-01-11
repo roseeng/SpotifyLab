@@ -46,10 +46,20 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
 
         static void Main(string[] args)
         {
+            var clientId = "b80c989bca714f4b9544319ac76c8c33";
+                       
+            var token = OAuth.GetToken(clientId);
+
+            if (string.IsNullOrEmpty(token))
+            {
+                Console.WriteLine("No token received. Check the chrome window.");
+                return;
+            }
+
             var spotify = new SpotifyWebAPI()
-            {                
+            {
                 TokenType = "Bearer",
-                AccessToken = "BQBPGjGB5WiAn-DvNlP13H9Rsx92neTLpKAIkDjwpdatUfflFrS1VgJmI5-UvXDtmdG7qwcaPcs_cF1sZeZrohegyh274oYbY__S7demnSn4P4SWw_cEgiXgL2E2g8G8vy9Xug4zuwM5FPOx3gTqZCyUXOTh7pjvtVYsGQ",
+                AccessToken = token, // "BQBPGjGB5WiAn-DvNlP13H9Rsx92neTLpKAIkDjwpdatUfflFrS1VgJmI5-UvXDtmdG7qwcaPcs_cF1sZeZrohegyh274oYbY__S7demnSn4P4SWw_cEgiXgL2E2g8G8vy9Xug4zuwM5FPOx3gTqZCyUXOTh7pjvtVYsGQ",
                 UseAuth = true
             };
 
@@ -57,7 +67,10 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
 
             var prof = spotify.GetPrivateProfile();
             if (prof.HasError())
-                Console.WriteLine("err" + prof.Error.Message);
+            {
+                Console.WriteLine("Error logging in to the Spotify API. Message: " + prof.Error.Message);
+                return;
+            }
 
             Console.WriteLine("Logged in as: " + prof.DisplayName);
             
