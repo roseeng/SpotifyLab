@@ -33,12 +33,13 @@ https://accounts.spotify.com/authorize/?client_id=b80c989bca714f4b9544319ac76c8c
          
          */
         /*
-http://localhost/#
-access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9c-PXwQA_rOsjnVMLbIPmpMijLo1Jg_WtXN-CbbQPPDyytaF6qsmtGjv_D8YiV5rUj8q6pe_Igy9DA_hCAdehiZwegRIh1jcnbSbxNjDY
-
-&token_type=Bearer
-&expires_in=3600
-&state=         
+http://localhost/?
+code=AQB1sxJL8Uf_oJHMrdgqypswZLLGKCXi8rhJmT73Tyj_13n_pqh68EOlRG6w6Eo2knXIbR5SHh9q4jt1kdNGNsg7cpMv0-dpE8Q5_HVhWipigOgDMzWhHrfAmBLSYDmkMpd6_6CuUXZTvl0r7Q9IPfiS31N_5x9Ny9OVQ2GOM251ZEhGZbkpTrAEbPdpRcK_TLgdHZ_5u8WVveI3S8QH
+&state=          
+         * 
+Client ID b80c989bca714f4b9544319ac76c8c33
+Client Secret 72b70cc9e25d4e588e6d38a9934141fe 
+         
          */
 
         //static string _ClientId = "b80c989bca714f4b9544319ac76c8c33";
@@ -46,6 +47,16 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
 
         static void Main(string[] args)
         {
+            OAuth.Authorize();
+
+
+
+            var clientId = "b80c989bca714f4b9544319ac76c8c33";
+            var clientSecret = "72b70cc9e25d4e588e6d38a9934141fe";
+            var code = "AQDgYk8cwEokLIRCBxROBDh64TMxOCULZ5qMGctFyQZZNelRkU1exW7giRZC71AaxQjn9jhap302gWAQID5gCm87EJmnvN9cGSVeQRgQ9Z8yBHvYLvJcKBJVmvpGCPE6iES3_WEslMRPWG-J0mHPEKeByEJBjo0yNKQVU2_1yIl8gcOl-GwzJ4O65ZbKNp6c4u9-Xwpu9C9RHGDS5U4m";
+//            var code = "AQB1sxJL8Uf_oJHMrdgqypswZLLGKCXi8rhJmT73Tyj_13n_pqh68EOlRG6w6Eo2knXIbR5SHh9q4jt1kdNGNsg7cpMv0 - dpE8Q5_HVhWipigOgDMzWhHrfAmBLSYDmkMpd6_6CuUXZTvl0r7Q9IPfiS31N_5x9Ny9OVQ2GOM251ZEhGZbkpTrAEbPdpRcK_TLgdHZ_5u8WVveI3S8QH";
+            var token = OAuth.GetToken(clientId, clientSecret, code);
+
             var spotify = new SpotifyWebAPI()
             {                
                 TokenType = "Bearer",
