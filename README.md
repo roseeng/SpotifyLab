@@ -2,7 +2,7 @@
 Download all your playlist metadata
 
 ## Usage;
-Go to spotify and register an application. Set redirectURL to "http://localhost".
+Go to https://developer.spotify.com/dashboard and register an application. Set redirectURL to "http://localhost".
 Update clientId in Program.cs to your clientId.
 
 When you start the application it will open a webpage, where you do the OAuth authorization.
