@@ -13,6 +13,10 @@ using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 
+using Newtonsoft.Json.Serialization;
+using System.Reflection;
+using Newtonsoft.Json;
+
 namespace Spotify
 {
     class Program
@@ -46,8 +50,10 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
 
         static void Main(string[] args)
         {
+            string output = "json";
+
             var clientId = "b80c989bca714f4b9544319ac76c8c33";
-                       
+
             var token = OAuth.GetToken(clientId);
 
             if (string.IsNullOrEmpty(token))
@@ -73,7 +79,7 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
             }
 
             Console.WriteLine("Logged in as: " + prof.DisplayName);
-            
+
             HashSet<SimplePlaylist> Playlists = new HashSet<SimplePlaylist>();
             //HashSet<CompositePlaylist> Playlists = new HashSet<CompositePlaylist>();
             HashSet<FullTrack> Tracks = new HashSet<FullTrack>();
@@ -82,16 +88,21 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
             HashSet<PlaylistTrack> PlaylistTracks = new HashSet<PlaylistTrack>();
 
             bool goOn = true;
-            for (int offset = 0; goOn; offset += 20) {
+            for (int offset = 0; goOn; offset += 20)
+            {
                 var playlists = spotify.GetUserPlaylists(userId, 20, offset);
 
-                if (playlists.HasError()) {
-                    if (playlists.Error.Status == 429) {
+                if (playlists.HasError())
+                {
+                    if (playlists.Error.Status == 429)
+                    {
                         Console.WriteLine("GetUserPlaylists Offset: " + offset + ", RLE, wait " + playlists.Header("Retry-After") + " seconds");
                         var dummy = playlists.Headers();
                         Thread.Sleep(30 * 1000);
                         playlists = spotify.GetUserPlaylists(userId, 20, offset);
-                    } else {
+                    }
+                    else
+                    {
                         Console.WriteLine("GetUserPlaylists err " + playlists.Error.Message);
                         break; ;
                     }
@@ -99,7 +110,8 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
 
                 goOn = playlists.HasNextPage();
 
-                foreach (var playlist in playlists.Items) {
+                foreach (var playlist in playlists.Items)
+                {
                     Console.WriteLine("  * " + playlist.Name + ", id: " + playlist.Id + ", tracks: " + playlist.Tracks.Total);
                     //var data2 = Newtonsoft.Json.JsonConvert.SerializeObject(playlist);
                     //var p2 = Newtonsoft.Json.JsonConvert.DeserializeObject<CompositePlaylist>(data2);
@@ -110,12 +122,16 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
                     Snapshots.Add(snap);
 
                     var tracks = spotify.GetPlaylistTracks(userId, playlist.Id);
-                    if (tracks.HasError()) {
-                        if (tracks.Error.Status == 429) {
+                    if (tracks.HasError())
+                    {
+                        if (tracks.Error.Status == 429)
+                        {
                             Console.WriteLine("GetPlaylistTracks " + playlist.Name + ", RLE, wait " + tracks.Header("Retry-After") + " seconds");
                             Thread.Sleep(20 * 1000);
                             tracks = spotify.GetPlaylistTracks(userId, playlist.Id);
-                        } else {
+                        }
+                        else
+                        {
                             Console.WriteLine("GetPlaylistTracks " + playlist.Name + ", err " + tracks.Error.Message);
                             continue;
                         }
@@ -125,7 +141,8 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
                     //pt.playlist_id = playlist.Id;
                     //p2.FullTracks = new HashSet<FullTrack>();
 
-                    foreach (var track in tracks.Items) {
+                    foreach (var track in tracks.Items)
+                    {
                         //var data = Newtonsoft.Json.JsonConvert.SerializeObject(track.Track);
                         Tracks.Add(track.Track);
 
@@ -135,7 +152,7 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
 
                         PlaylistTracks.Add(pt);
                         //p2.FullTracks.Add( track.Track );
-//                        Console.WriteLine("  * * " + track.Track.Name + " - " + track.Track.Album.Name  + " - " + Artists(track.Track.Artists) + " " + track.Track.PreviewUrl);
+                        //                        Console.WriteLine("  * * " + track.Track.Name + " - " + track.Track.Album.Name  + " - " + Artists(track.Track.Artists) + " " + track.Track.PreviewUrl);
                     }
 
                     //Playlists.Add(p2);
@@ -144,35 +161,72 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
                 }
             }
 
-            // Start writing: (tailored for use with https://github.com/marmelab/json-graphql-server)
-            StreamWriter sw = new StreamWriter("spotifydata.js");
+            if (output == "graphql")
+            {
+                // Start writing: (tailored for use with https://github.com/marmelab/json-graphql-server)
+                StreamWriter sw = new StreamWriter("spotifydata.js");
 
-            sw.WriteLine("module.exports = { ");
-            sw.WriteLine(" \"snapshots\": ");
-            var data3 = Newtonsoft.Json.JsonConvert.SerializeObject(Snapshots);
-            sw.WriteLine(data3);
+                sw.WriteLine("module.exports = { ");
+                sw.WriteLine(" \"snapshots\": ");
+                var data3 = Newtonsoft.Json.JsonConvert.SerializeObject(Snapshots);
+                sw.WriteLine(data3);
 
-            sw.WriteLine(",");
+                sw.WriteLine(",");
 
-            sw.WriteLine(" \"playlists\": ");
-            data3 = Newtonsoft.Json.JsonConvert.SerializeObject(Playlists);
-            sw.WriteLine(data3);
+                sw.WriteLine(" \"playlists\": ");
+                data3 = Newtonsoft.Json.JsonConvert.SerializeObject(Playlists);
+                sw.WriteLine(data3);
 
-            sw.WriteLine(",");
+                sw.WriteLine(",");
 
-            sw.WriteLine(" \"tracks\": ");
-            data3 = Newtonsoft.Json.JsonConvert.SerializeObject(Tracks);
-            sw.WriteLine(data3);
+                sw.WriteLine(" \"tracks\": ");
+                data3 = Newtonsoft.Json.JsonConvert.SerializeObject(Tracks);
+                sw.WriteLine(data3);
 
-            sw.WriteLine(",");
+                sw.WriteLine(",");
 
-            sw.WriteLine(" \"playlist_tracks\": ");
-            data3 = Newtonsoft.Json.JsonConvert.SerializeObject(PlaylistTracks);
-            sw.WriteLine(data3);
+                sw.WriteLine(" \"playlist_tracks\": ");
+                data3 = Newtonsoft.Json.JsonConvert.SerializeObject(PlaylistTracks);
+                sw.WriteLine(data3);
 
-            sw.WriteLine("};");
+                sw.WriteLine("};");
 
-            sw.Close();
+                sw.Close();
+            }
+
+            if (output == "json")
+            {
+                StreamWriter sw = new StreamWriter("spotifydata.json");
+
+                //            Console.WriteLine("Logged in as: " + prof.DisplayName);
+                sw.WriteLine("{ \"userId\": \"" + prof.Id + "\",");
+                sw.WriteLine("  \"username\": \"" + prof.DisplayName + "\",");
+                sw.WriteLine(" \"playlists\": [");
+
+                foreach (var playlist in Playlists)
+                {
+                    //Console.WriteLine("  * " + playlist.Name + ", id: " + playlist.Id + ", tracks: " + playlist.Tracks.Total);
+                    var data2 = Newtonsoft.Json.JsonConvert.SerializeObject(playlist);
+                    sw.WriteLine("{ \"type\": \"listcontainer\", ");
+                    sw.WriteLine("  \"list\": " + data2 + ",");
+
+                    var playlisttracks = PlaylistTracks.Where(plt => plt.playlist_id == playlist.Id).Select(plt => plt.track_id).ToList();
+                    var tracks = Tracks.Where(t => playlisttracks.Contains(t.Id)).ToList();
+                    var data3 = JsonConvert.SerializeObject(tracks, new JsonSerializerSettings() { 
+                        ContractResolver = new SimpleIgnorePropertiesResolver() 
+                    });
+
+                    sw.WriteLine("  \"tracks\": " + data3 + "");
+
+                    sw.WriteLine("},");
+
+                }
+
+                sw.WriteLine("  ]");
+                sw.WriteLine("}");
+
+                sw.Close();
+            }
         }
     }
 
@@ -197,11 +251,56 @@ access_token=BQBbdryq3UCMOoD5BgGRzGkQpd_7queFqzt0ifYMkF6RTIpi-jWAhpv35BWTmbsgG_9
         public string Id;
         public string playlist_id;
         public string track_id;
-  //      public HashSet<string> track_ids;
+        //      public HashSet<string> track_ids;
     }
 
-    public class CompositePlaylist: SimplePlaylist
+    public class CompositePlaylist : SimplePlaylist
     {
         public HashSet<FullTrack> FullTracks;
     }
+
+
+    /* 
+     * A short helper class to ignore some properties from serialization
+     * 
+     * JsonConvert.SerializeObject(YourObject, new JsonSerializerSettings()
+        { ContractResolver = new IgnorePropertiesResolver(new[] { "Prop1", "Prop2" }) };);
+    */
+    public class IgnorePropertiesResolver : DefaultContractResolver
+    {
+        private readonly HashSet<string> ignoreProps;
+        public IgnorePropertiesResolver(IEnumerable<string> propNamesToIgnore)
+        {
+            this.ignoreProps = new HashSet<string>(propNamesToIgnore);
+        }
+
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            JsonProperty property = base.CreateProperty(member, memberSerialization);
+            if (this.ignoreProps.Contains(property.PropertyName))
+            {
+                property.ShouldSerialize = _ => false;
+            }
+            return property;
+        }
+    }
+
+    public class SimpleIgnorePropertiesResolver : DefaultContractResolver
+    {
+        private readonly string ignoreProp = "available_markets";
+        public SimpleIgnorePropertiesResolver()
+        {
+        }
+
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            JsonProperty property = base.CreateProperty(member, memberSerialization);
+            if (property.PropertyName == ignoreProp)
+            {
+                property.ShouldSerialize = _ => false;
+            }
+            return property;
+        }
+    }
+
 }
