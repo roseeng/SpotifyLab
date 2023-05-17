@@ -20,21 +20,24 @@ namespace Spotify
             using (IWebDriver driver = new ChromeDriver())
             {
                 // We must be at the right domain to be able to load cookies
-                driver.Navigate().GoToUrl("https://www.spotify.com");
+                
+                //driver.Navigate().GoToUrl("https://www.spotify.com"); // Does not work anymore, it redirects to open.spotify.com
+                
+                //RestoreCookies(driver);
 
-                RestoreCookies(driver);
+                //// Check that we can login
+                //var overviewUrl = "https://www.spotify.com/se/account/overview/";
 
-                // Check that we can login
-                var overviewUrl = "https://www.spotify.com/se/account/overview/";
+                ////Notice navigation is slightly different than the Java version
+                ////This is because 'get' is a keyword in C#
+                //driver.Navigate().GoToUrl(overviewUrl);
+                //RestoreCookies(driver);
 
-                //Notice navigation is slightly different than the Java version
-                //This is because 'get' is a keyword in C#
-                driver.Navigate().GoToUrl(overviewUrl);
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-                wait.Until(d => d.Url.ToLower().StartsWith(overviewUrl));
+                //wait.Until(d => d.Url.ToLower().StartsWith(overviewUrl));
 
-                // Save cookies, since we are logged in now
-                PersistCookies(driver);
+                //// Save cookies, since we are logged in now
+                //PersistCookies(driver);
 
                 // Get a token for our app
                 driver.Navigate().GoToUrl("https://accounts.spotify.com/authorize/?client_id=" + clientId + "&response_type=token&redirect_uri=http://localhost&state=123&scope=playlist-read-private&show_dialog=False");
@@ -71,6 +74,9 @@ namespace Spotify
             {
                 while (!sr.EndOfStream)
                 {
+                    var theUrl = driver.Url;
+                    Console.WriteLine($"Current Url: {theUrl}");
+
                     var line = sr.ReadLine();
                     var mycookie = JsonConvert.DeserializeObject<MyCookie>(line, settings);
                     var cookie = mycookie.cookie;
